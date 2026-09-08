@@ -48,6 +48,7 @@ export default function Location() {
     try {
       const formData = {
         platform: "DPACK Popup Form",
+        supplierToken: "6a266629a0e54917311a8ce5",
         platformEmail: "dpacksolutionindia@gmail.com",
         ...form, // ✅ all fields from state
         message: "N/A",

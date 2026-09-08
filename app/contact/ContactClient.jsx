@@ -12,6 +12,7 @@ export default function ContactPage() {
     const formData = new FormData(e.target);
     const data = {
       platform: "DPACK Contact Page",
+      supplierToken: "6a266629a0e54917311a8ce5",
       platformEmail: "dpacksolutionindia@gmail.com",
       name: formData.get("contactPerson"),
       email: formData.get("email"),

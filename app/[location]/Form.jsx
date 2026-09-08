@@ -28,6 +28,7 @@ export default function Form({ setOpen }) {
     try {
       const formData = {
         platform: "DPACK Popup Form",
+        supplierToken: "6a266629a0e54917311a8ce5",
         platformEmail: "dpacksolutionindia@gmail.com",
         name,
         phone,
