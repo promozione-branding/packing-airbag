@@ -24,6 +24,7 @@ import { FaCheckDouble } from "react-icons/fa6";
 import { categories } from '@/Data';
 import Form from "./Form"
 import axios from 'axios';
+import { handleCallClick, handleWhatsappClick } from '@/lib/track';
 
 export default function Location() {
   const [open, setOpen] = useState(false);
@@ -320,18 +321,18 @@ Contact: ${form.phone}`;
           onChange={handleChange}
         />
 
-       <input
-  type="text"
-  name="phone"
-  placeholder="Phone Number"
-  maxLength={10}
-  inputMode="numeric"
-  className="border border-black p-3 placeholder:text-black rounded-lg w-full"
-  onChange={(e) => {
-    const value = e.target.value.replace(/[^0-9]/g, ""); 
-    handleChange({ target: { name: "phone", value } });
-  }}
-/>
+        <input
+          type="text"
+          name="phone"
+          placeholder="Phone Number"
+          maxLength={10}
+          inputMode="numeric"
+          className="border border-black p-3 placeholder:text-black rounded-lg w-full"
+          onChange={(e) => {
+            const value = e.target.value.replace(/[^0-9]/g, "");
+            handleChange({ target: { name: "phone", value } });
+          }}
+        />
 
         {/* DROPDOWN */}
         <select
@@ -406,7 +407,7 @@ Contact: ${form.phone}`;
                 </h3>
 
                 {/* CTA */}
-                <Link href={`https://wa.me/+917669988825?text=Hi, I have seen your product on https://packingairbag.com and I am interested in ${item.name}`}
+                <Link onClick={() => handleWhatsappClick({ source: "Website city page", obj: "N/A" })} href={`https://wa.me/+917669988825?text=Hi, I have seen your product on https://packingairbag.com and I am interested in ${item.name}`}
                   target="_blank" className="text-md bg-green-500 py-3 px-3 w-fit text-white  flex items-center gap-1  text-lg rounded-sm">
                   Whatsapp Now <ArrowUpRight size={14} />
                 </Link>
@@ -479,7 +480,7 @@ Contact: ${form.phone}`;
               Request a Quote
             </button>
 
-            <a
+            <a onClick={() => handleCallClick({ source: "Website city page", obj: "N/A" })}
               href="tel:+7669988825"
               className="border border-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-[#0a1a3c] transition"
             >
@@ -658,97 +659,97 @@ Contact: ${form.phone}`;
       </div>
     </section>
 
-     <div className='bg-gray-50'>     
-    <section className='max-w-7xl bg-gray-50 mx-auto'>
-      <div className="bg-gray-50 py-10 lg:px-15 px-4">
-        <div className="flex items-center justify-between mx-auto mb-4">
-          <h2 className="text-3xl font-semibold relative">
-            <span className="relative z-10">Featured Products</span>
-            {/* <Image height={100} width={100} src="/heading_shapes.png" className="absolute -left-6 -top-4 w-54 h-14 border-2  rounded-full z-20"></Image> */}
-          </h2>
+    <div className='bg-gray-50'>
+      <section className='max-w-7xl bg-gray-50 mx-auto'>
+        <div className="bg-gray-50 py-10 lg:px-15 px-4">
+          <div className="flex items-center justify-between mx-auto mb-4">
+            <h2 className="text-3xl font-semibold relative">
+              <span className="relative z-10">Featured Products</span>
+              {/* <Image height={100} width={100} src="/heading_shapes.png" className="absolute -left-6 -top-4 w-54 h-14 border-2  rounded-full z-20"></Image> */}
+            </h2>
 
-          <Link href="/products" className="text-sm hover:text-blue-600 text-gray-800 cursor-pointer hover:underline">
-            View All →
-          </Link>
-        </div>
+            <Link href="/products" className="text-sm hover:text-blue-600 text-gray-800 cursor-pointer hover:underline">
+              View All →
+            </Link>
+          </div>
 
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-          {products.map((item, i) => (
-            <SwiperSlide key={i}>
-              <div onClick={() => { setSelected(item); setActiveImg(item.img); }}
-                className="group bg-white h-92 rounded-2xl p-4 shadow-md hover:shadow-[0_25px_60px_rgba(0,0,0,0.15)] transition-all duration-500 relative overflow-hidden hover:-translate-y-2">
-                {/* IMAGE BOX */}
-                <div className="relative bg-[#F6F6F6] rounded-xl h-[242px] flex items-center justify-center overflow-hidden">
-                  {/* NEW TAG */}
-                  {item.tag && (
-                    <span className="absolute top-10 left-3 bg-blue-500 text-white text-xs px-3 py-1 rounded-full z-10 shadow">
-                      {item.tag}
-                    </span>
-                  )}
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {products.map((item, i) => (
+              <SwiperSlide key={i}>
+                <div onClick={() => { setSelected(item); setActiveImg(item.img); }}
+                  className="group bg-white h-92 rounded-2xl p-4 shadow-md hover:shadow-[0_25px_60px_rgba(0,0,0,0.15)] transition-all duration-500 relative overflow-hidden hover:-translate-y-2">
+                  {/* IMAGE BOX */}
+                  <div className="relative bg-[#F6F6F6] rounded-xl h-[242px] flex items-center justify-center overflow-hidden">
+                    {/* NEW TAG */}
+                    {item.tag && (
+                      <span className="absolute top-10 left-3 bg-blue-500 text-white text-xs px-3 py-1 rounded-full z-10 shadow">
+                        {item.tag}
+                      </span>
+                    )}
 
-                  {/* 🔥 IMAGE SWITCH */}
-                  <div className="relative w-full h-full">
-                    {/* MAIN IMAGE */}
-                    <Image
-                      src={item.img}
-                      alt="loading"
-                      width={500}
-                      height={500}
-                      className="object-cover transition-all duration-500 group-hover:opacity-0 group-hover:scale-110"
-                    />
+                    {/* 🔥 IMAGE SWITCH */}
+                    <div className="relative w-full h-full">
+                      {/* MAIN IMAGE */}
+                      <Image
+                        src={item.img}
+                        alt="loading"
+                        width={500}
+                        height={500}
+                        className="object-cover transition-all duration-500 group-hover:opacity-0 group-hover:scale-110"
+                      />
 
-                    {/* HOVER IMAGE */}
-                    <Image
-                      src={item.hoverImg}
-                      alt="loading"
-                      width={900}
-                      height={500}
-                      className="object-contain absolute top-0 left-0 opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:scale-125"
-                    />
-
-                  </div>
-                  {/* HOVER OVERLAY */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex items-end justify-center pb-6">
-                    <div className="flex gap-3 translate-y-8 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                      <button
-                        onClick={() => {
-                          setSelected(item);
-                          setActiveImg(item.img);
-                        }}
-                        className="w-10 h-10 bg-white cursor-pointer flex items-center justify-center rounded-full shadow-md hover:bg-black hover:text-white transition"
-                      >
-                        <Eye size={18} />
-                      </button>
+                      {/* HOVER IMAGE */}
+                      <Image
+                        src={item.hoverImg}
+                        alt="loading"
+                        width={900}
+                        height={500}
+                        className="object-contain absolute top-0 left-0 opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:scale-125"
+                      />
 
                     </div>
+                    {/* HOVER OVERLAY */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex items-end justify-center pb-6">
+                      <div className="flex gap-3 translate-y-8 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                        <button
+                          onClick={() => {
+                            setSelected(item);
+                            setActiveImg(item.img);
+                          }}
+                          className="w-10 h-10 bg-white cursor-pointer flex items-center justify-center rounded-full shadow-md hover:bg-black hover:text-white transition"
+                        >
+                          <Eye size={18} />
+                        </button>
 
+                      </div>
+
+                    </div>
+                  </div>
+
+                  {/* CONTENT */}
+                  <div className="mt-4">
+                    <h3 className="text-[15px] font-semibold text-gray-800 leading-tight group-hover:text-orange-500 transition">
+                      {item.title}
+                    </h3>
+
+                    {/* RATING */}
+                    <div className="flex items-center gap-1 mt-2 text-orange-500">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} size={15} fill="orange" />
+                      ))}
+                      <span className="text-gray-500 text-sm ml-1">
+                        ({item.reviews} Reviews)
+                      </span>
+                    </div>
                   </div>
                 </div>
-
-                {/* CONTENT */}
-                <div className="mt-4">
-                  <h3 className="text-[15px] font-semibold text-gray-800 leading-tight group-hover:text-orange-500 transition">
-                    {item.title}
-                  </h3>
-
-                  {/* RATING */}
-                  <div className="flex items-center gap-1 mt-2 text-orange-500">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} size={15} fill="orange" />
-                    ))}
-                    <span className="text-gray-500 text-sm ml-1">
-                      ({item.reviews} Reviews)
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-          ))}
+              </SwiperSlide>
+            ))}
 
 
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
     </div>
 
     <section className='max-w-7xl mx-auto py-2 mt-5'>

@@ -8,6 +8,7 @@ import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import Link from "next/link";
+import { handleCallClick } from "@/lib/track";
 
 export default function FlashSale() {
   const [selected, setSelected] = useState(null);
@@ -293,7 +294,7 @@ export default function FlashSale() {
                   </ul>
 
                   <div className="flex justify-center items-center">
-                    <a href="tel:+917669988825" target="blank" className="bg-orange-500 mx-auto hover:bg-orange-600 text-white px-4 py-3 rounded-md">
+                    <a onClick={() => handleCallClick({ source: "Website home page", obj: "N/A" })} href="tel:+917669988825" target="blank" className="bg-orange-500 mx-auto hover:bg-orange-600 text-white px-4 py-3 rounded-md">
                       Inquiry Now
                     </a>
                   </div>

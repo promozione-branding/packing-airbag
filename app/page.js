@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import Hero from "@/components/Landingpage/Hero";
 import About from "@/components/Landingpage/About";
@@ -24,7 +25,7 @@ export default function Home() {
   return (
     <>
       {/* <Popup></Popup> */}
-         <Whatsapp />
+      <Whatsapp />
       <Hero />
 
       <About />

@@ -17,29 +17,29 @@ export default function Navbar() {
   const [openP, setOpenP] = useState(false)
   const [categoryOpen, setCategoryOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState([]);
 
 
 
 
-const fetchCategories = async () => {
-  try {
-    const res = await fetch("/api/categories");
+  const fetchCategories = async () => {
+    try {
+      const res = await fetch("/api/categories");
 
-    const data = await res.json();
+      const data = await res.json();
 
-    setCategories(data);
+      setCategories(data);
 
-  } catch (error) {
-    console.log(error);
-  }
-};
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 
-// api call
-useEffect(() => {
-  fetchCategories();
-}, []);
+  // api call
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,18 +65,18 @@ useEffect(() => {
         <div className="flex items-center justify-between w-full ">
           <Link href={`/`} className="flex flex-col md:flex-row md:items-center sm:gap-1">
             <Image width={120} height={50} src="/logo.png" className="h-18 w-auto" alt="logo" />
-            
+
             <p className='border border-white flex text-sm text-orange-600 bg-orange-50 px-2 sm:px-3 py-1 rounded-full'>GSTIN: 07AFXPJ4168A2Z9</p>
           </Link>
 
 
-            <div className="w-30 md:hidden  mt-3 lg:mt-0 ">
-          <button onClick={()=>{setOpenP(true),console.log(openP)}} className="w-full text-xl  capitalize cursor-pointer bg-black text-white text-sm md:text-md px-2 py-2">
-            Get Quote
-          </button>
-        </div>
-      
-          
+          <div className="w-30 md:hidden  mt-3 lg:mt-0 ">
+            <button onClick={() => { setOpenP(true), console.log(openP) }} className="w-full text-xl  capitalize cursor-pointer bg-black text-white text-sm md:text-md px-2 py-2">
+              Get Quote
+            </button>
+          </div>
+
+
 
 
           {/* MOBILE MENU BUTTON */}
@@ -185,14 +185,14 @@ useEffect(() => {
 
         {/* RIGHT SIDE */}
         <div className="w-50   mt-3 lg:mt-0 lg:block hidden">
-          <button onClick={()=>{setOpenP(true),console.log(openP)}} className="w-full text-xl  capitalize cursor-pointer bg-black text-white text-sm md:text-md px-4 py-4">
+          <button onClick={() => { setOpenP(true), console.log(openP) }} className="w-full text-xl  capitalize cursor-pointer bg-black text-white text-sm md:text-md px-4 py-4">
             Get Quote
           </button>
         </div>
       </div>
-    {openP && <Popup2 isOpen={openP}
-  onClose={() => setOpenP(false)}
-/>}
+      {openP && <Popup2 isOpen={openP}
+        onClose={() => setOpenP(false)}
+      />}
     </section>
   </>)
 }

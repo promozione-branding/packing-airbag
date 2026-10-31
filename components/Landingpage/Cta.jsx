@@ -1,3 +1,4 @@
+import { handleCallClick } from "@/lib/track";
 import React from "react";
 
 const Cta = () => {
@@ -16,7 +17,7 @@ const Cta = () => {
           designed for safety, durability, and performance.
         </p>
 
-        <a target="black" href="tel:+917669988825" className="bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition text-sm md:text-base font-medium">
+        <a onClick={() => handleCallClick({ source: "Website home page", obj: "N/A" })} target="black" href="tel:+917669988825" className="bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition text-sm md:text-base font-medium">
           Get Started →
         </a>
       </div>

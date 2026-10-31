@@ -12,6 +12,7 @@ import {
   FaBoxes,
 } from "react-icons/fa";
 import { BsGridFill } from "react-icons/bs";
+import { handleCallClick } from "@/lib/track";
 
 const categories = [
   { name: "Dunnage Bag", link: "/categories/dunnage-bag", img: "/cat/1.webp" },
@@ -157,7 +158,7 @@ export default function StickyFooter() {
             </Link>
 
             {/* Call */}
-            <a
+            <a onClick={() => handleCallClick({ source: "Website home page", obj: "N/A" })}
               href="tel:+917669988825"
               className="flex flex-col items-center justify-center gap-1"
             >

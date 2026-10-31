@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 
 import Product360Modal from "@/components/360View";
+import { handleCallClick, handleWhatsappClick } from "@/lib/track";
 
 export default function ProductDetailsClient({ product }) {
   const [activeImage, setActiveImage] = useState(product.images?.[0]?.src);
@@ -63,10 +64,9 @@ export default function ProductDetailsClient({ product }) {
                   key={index}
                   onClick={() => setActiveImage(img.src)}
                   className={`w-[90px] h-[90px] rounded-xl border overflow-hidden bg-white flex items-center justify-center transition-all
-                    ${
-                      activeImage === img.src
-                        ? "border-orange-500"
-                        : "border-gray-300"
+                    ${activeImage === img.src
+                      ? "border-orange-500"
+                      : "border-gray-300"
                     }`}
                 >
                   <Image
@@ -153,7 +153,7 @@ export default function ProductDetailsClient({ product }) {
 
               {/* BUTTONS */}
               <div className="flex gap-4 mt-7">
-                <a
+                <a onClick={() => handleCallClick({ source: "Website product page", obj: "N/A" })}
                   href="tel:+917669988825"
                   className="bg-[#ff5a00] hover:bg-[#f04f00] transition-all text-white h-[54px] px-8 rounded-xl font-semibold flex items-center gap-3"
                 >
@@ -161,7 +161,7 @@ export default function ProductDetailsClient({ product }) {
                   Enquire About Product
                 </a>
 
-                <Link
+                <Link onClick={() => handleWhatsappClick({ source: "Website product page", obj: "N/A" })}
                   href={`https://wa.me/+917669988825?text=Hi, I have seen your product on https://packingairbag.com and I am interested in ${product.name}`}
                   target="_blank"
                   className="bg-[#038b31] hover:bg-[#027528] transition-all text-white h-[54px] px-8 rounded-xl font-semibold flex items-center gap-3"
@@ -246,11 +246,10 @@ export default function ProductDetailsClient({ product }) {
             <button
               onClick={() => setActiveTab("description")}
               className={`px-8 h-[48px] rounded-full border text-[15px] transition-all
-              ${
-                activeTab === "description"
+              ${activeTab === "description"
                   ? "bg-[#f9e8d4] border-[#f2c28f] text-[#f76a00]"
                   : "bg-white border-gray-300 text-gray-600"
-              }`}
+                }`}
             >
               Description
             </button>
@@ -258,11 +257,10 @@ export default function ProductDetailsClient({ product }) {
             <button
               onClick={() => setActiveTab("additional")}
               className={`px-8 h-[48px] rounded-full border text-[15px] transition-all
-              ${
-                activeTab === "additional"
+              ${activeTab === "additional"
                   ? "bg-[#f9e8d4] border-[#f2c28f] text-[#f76a00]"
                   : "bg-white border-gray-300 text-gray-600"
-              }`}
+                }`}
             >
               Additional Info
             </button>
